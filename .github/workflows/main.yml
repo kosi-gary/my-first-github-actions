@@ -1,16 +1,26 @@
 name: CI
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 jobs:
-  build:
+  without_env:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Echo MY_FAV_COLOR
+        run: echo "MY_FAV_COLOR is ${{ vars.MY_FAV_COLOR }}"
 
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project
+      - name: Echo Show MY_SECRET
+        run: echo "MY_SECRET is ${{ secrets.MY_SECRET }}"
+
+  with_env:
+    runs-on: ubuntu-latest
+
+    environment: dev
+
+    steps:
+      - name: Echo MY_FAV_COLOR
+        run: echo "MY_FAV_COLOR is ${{ vars.MY_FAV_COLOR }}"
+
+      - name: Echo Show MY_SECRET
+        run: echo "MY_SECRET is ${{ secrets.MY_SECRET }}"
