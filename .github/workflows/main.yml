@@ -16,7 +16,9 @@ jobs:
   with_env:
     runs-on: ubuntu-latest
 
-    environment: dev
+    environment:
+      name: dev
+      url: https://example.com
 
     steps:
       - name: Echo MY_FAV_COLOR
